@@ -15,6 +15,7 @@ This bootstraps a project with:
 - spotbugs for static code analysis
 - junit, mockito, and hamcrest for unit testing
 
+```
 <dependencies>
 	<dependency>
 		<groupId>com.google.inject</groupId>
@@ -70,3 +71,4 @@ This bootstraps a project with:
 		</plugin>
 	</plugins>
 </build>
+```
