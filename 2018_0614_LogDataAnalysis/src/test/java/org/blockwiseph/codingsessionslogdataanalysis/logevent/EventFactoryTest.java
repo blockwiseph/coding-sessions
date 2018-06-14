@@ -44,8 +44,7 @@ public class EventFactoryTest {
 
 	@Test(expected = InvalidLogLineException.class)
 	public void purchaseEventInvalid() throws InvalidLogLineException {
-		PurchaseEvent expectedEvent = new PurchaseEvent("test@gmail.com", 10, 24.5);
-		LogEvent actualEvent = eventFactory.fromLogLine("PURCHASE test@gmail.com asd asds");
+		eventFactory.fromLogLine("PURCHASE test@gmail.com asd asds");
 	}
 
 	@Test(expected = InvalidLogLineException.class)
