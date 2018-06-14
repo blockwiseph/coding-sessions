@@ -1,26 +1,26 @@
-LOGOUT 2@gmail
-LOGIN 1@hotmail
-CRASH 2@gmail
-PURCHASE 3@hotmail 1 60.40
-PURCHASE 2@hotmail 6 324.90
-LOGIN 2@gmail
-CRASH 2@hotmail
-VIEW_AD 3@hotmail 48
-VIEW_AD 3@gmail 8
-LOGIN 3@hotmail
-PURCHASE 2@gmail 5 532.42
-LOGIN 3@gmail
-CRASH 1@yahoo
-LOGIN 2@hotmail
-VIEW_AD 2@gmail 14
-LOGOUT 3@hotmail
-PURCHASE 1@yahoo 5 315.27
-LOGIN 1@yahoo
-LOGOUT 3@gmail
-PURCHASE 1@hotmail 8 823.23
-VIEW_AD 1@yahoo 23
-LOGOUT 1@yahoo
-VIEW_AD 2@hotmail 48
+LOGOUT 2@gmail.com
+LOGIN 1@gmail.com
+CRASH 2@gmail.com
+PURCHASE 3@gmail.com 1 60.40
+PURCHASE 2@gmail.com 6 324.90
+LOGIN 2@gmail.com
+CRASH 2@gmail.com
+VIEW_AD 3@gmail.com 48
+VIEW_AD 3@gmail.com 8
+LOGIN 3@gmail.com
+PURCHASE 2@gmail.com 5 532.42
+LOGIN 3@gmail.com
+CRASH 1@gmail.com
+LOGIN 2@gmail.com
+VIEW_AD 2@gmail.com 14
+LOGOUT 3@gmail.com
+PURCHASE 1@gmail.com 5 315.27
+LOGIN 1@gmail.com
+LOGOUT 3@gmail.com
+PURCHASE 1@gmail.com 8 823.23
+VIEW_AD 1@gmail.com 23
+LOGOUT 1@gmail.com
+VIEW_AD 2@gmail.com 48
 
 
 BEFORE ENHANCEMENT:
@@ -75,7 +75,7 @@ AFTER ENHANCEMENT:
 	},
 	"adStatistics": {
 		"averageViewsPerAd": 1.33,
-		"averageUniqueViewsPerAd": 1.22,
+		"averageUniqueViewsPerAd": 1.33,
 		"adIdToViews": {
 			"14": 1,
 			"23": 1,

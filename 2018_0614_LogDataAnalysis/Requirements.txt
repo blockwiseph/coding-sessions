@@ -11,7 +11,7 @@ LOGOUT <email>
 CRASH <email> 
 PURCHASE <email> <num_items> <amount>
 
-We need to do basic analytics on these events. Each type of analytics report should be spit out in a separate file, in json format.
+We need to do basic analytics on these events. Each type of analytics report should be spit out, in json format.
 
 1. How many of each event type
 2. How many unique users logged in, unique users logged out
