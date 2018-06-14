@@ -1,0 +1,84 @@
+LOGOUT 3@hotmail
+VIEW_AD 2@yahoo 26
+LOGOUT 2@yahoo
+CRASH 2@hotmail
+LOGIN 2@yahoo
+PURCHASE 3@hotmail 5 475.74
+PURCHASE 2@hotmail 14 216.10
+LOGIN 3@yahoo
+LOGIN 3@gmail
+VIEW_AD 2@gmail 26
+PURCHASE 2@yahoo 10 450.63
+LOGIN 3@hotmail
+LOGOUT 3@yahoo
+PURCHASE 3@gmail 10 839.45
+LOGIN 2@gmail
+CRASH 3@gmail
+LOGIN 2@hotmail
+LOGOUT 2@gmail
+LOGOUT 3@gmail
+PURCHASE 3@yahoo 8 857.18
+CRASH 3@yahoo
+CRASH 3@yahoo
+
+BEFORE ENHANCEMENT:
+{
+	"eventTypes": {
+		"LOGIN": 6,
+		"LOGOUT": 5,
+		"PURCHASE": 5,
+		"CRASH": 4
+	},
+	"userActivity": {
+		"uniqueLogin": 2,
+		"uniqueLogout": 2
+	},
+	"averagePerUniqueUser": {
+		"LOGIN": 3,
+		"LOGOUT": 2.5,
+		"PURCHASE": 2.5,
+		"CRASH": 2
+	},
+	"purchasingStatistics": {
+		"averagePurhcaseAmount": 567.82,
+		"averagePricePerItem": 60.41,
+		"averageItemsPerPurchase": 9.4
+	}
+}
+
+AFTER ENHANCEMENT:
+{
+	"eventTypes": {
+		"LOGIN": 6,
+		"LOGOUT": 5,
+		"PURCHASE": 5,
+		"CRASH": 4
+		"VIEW_AD": 2
+	},
+	"userActivity":{
+		"uniqueLogin": 2,
+		"uniqueLogout": 2
+	},
+	"averagePerUniqueUser": {
+		"LOGIN": 3.00,
+		"LOGOUT": 2.50,
+		"PURCHASE": 2.50,
+		"CRASH": 2.00
+		"VIEW_AD": 2.00
+	},
+	"purchasingStatistics"{
+		"averagePurhcaseAmount": 567.82
+		"averagePricePerItem": 60.41
+		"averageItemsPerPurchase": 9.40
+	},
+	"adStatistics": {
+		"averageViewsPerAd": 2.00
+		"averageUniqueViewsPerAd": 1.00
+		"adIdToViews":{
+			"2": 2
+		}
+		"adIdToUniqueViews":{
+			"2": 1
+		}
+	}
+}

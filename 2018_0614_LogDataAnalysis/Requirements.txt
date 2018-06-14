@@ -15,8 +15,8 @@ We need to do basic analytics on these events. Each type of analytics report sho
 
 1. How many of each event type
 2. How many unique users logged in, unique users logged out
-3. Average logins, logouts, crashes  per unique user
-4. Average purchase amount, average price per item, average items per purchase, average purchases per user
+3. Average of logins, logouts, crashes  per unique user
+4. Average purchase amount, average price per item, average items per purchase
 
 
 It should be easy to support new event types.
@@ -28,4 +28,4 @@ Ideally, just add the new classes and everything works as expected.
 
 VIEW_AD <email> <ad_id>
 
-5. How many ads were viewed per unique user, how many views per ad, how many unique views per ad
+5. How many views per ad, how many unique views per ad
