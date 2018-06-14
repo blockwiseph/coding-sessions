@@ -21,6 +21,11 @@ public class EventFactoryTest {
 		assertEquals(expectedEvent, actualEvent);
 	}
 
+	@Test(expected = InvalidLogLineException.class)
+	public void loginEventInvalid() throws InvalidLogLineException {
+		eventFactory.fromLogLine("LOGIN");
+	}
+
 	@Test
 	public void logoutEvent() throws InvalidLogLineException {
 		LogoutEvent expectedEvent = new LogoutEvent("test3@gmail.com");
@@ -28,11 +33,21 @@ public class EventFactoryTest {
 		assertEquals(expectedEvent, actualEvent);
 	}
 
+	@Test(expected = InvalidLogLineException.class)
+	public void logoutEventInvalid() throws InvalidLogLineException {
+		eventFactory.fromLogLine("LOGOUT");
+	}
+
 	@Test
 	public void crashEvent() throws InvalidLogLineException {
 		CrashEvent expectedEvent = new CrashEvent("test@gmail.com");
 		LogEvent actualEvent = eventFactory.fromLogLine("CRASH test@gmail.com");
 		assertEquals(expectedEvent, actualEvent);
+	}
+
+	@Test(expected = InvalidLogLineException.class)
+	public void crashEventInvalid() throws InvalidLogLineException {
+		eventFactory.fromLogLine("CRASH");
 	}
 
 	@Test
