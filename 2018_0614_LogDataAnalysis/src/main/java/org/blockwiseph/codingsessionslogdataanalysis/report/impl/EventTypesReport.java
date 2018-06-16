@@ -1,4 +1,4 @@
-package org.blockwiseph.codingsessionslogdataanalysis.report;
+package org.blockwiseph.codingsessionslogdataanalysis.report.impl;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -7,28 +7,29 @@ import java.util.Map.Entry;
 import java.util.Optional;
 
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventType;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.report.LogEventsReport;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class EventTypesReport implements LogEventsReport {
 
-	private static final String name = "eventTypes";
-
+	private static final String REPORT_NAME = "eventTypes";
+	
 	@Override
 	public JSONObject generateReport(List<LogEvent> logEvents) {
 		HashMap<String, Integer> eventCounter = new HashMap<>();
 		for (LogEvent logEvent : logEvents) {
-			EventType eventType = logEvent.getTag();
-			Integer i = Optional.ofNullable(eventCounter.get(eventType.name())).orElse(0);
-			eventCounter.put(eventType.name(), i + 1);
+			String eventName = logEvent.getTag().name();
+			Integer existingEventCount = Optional.ofNullable(eventCounter.get(eventName)).orElse(0);
+			
+			eventCounter.put(eventName, existingEventCount + 1);
 		}
-		JSONObject report = new JSONObject(eventCounter);
-		return report;
+		return new JSONObject(eventCounter);
 	}
 
 	@Override
 	public String getName() {
-		return name;
+		return REPORT_NAME;
 	}
 }

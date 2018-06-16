@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.CrashEvent;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.InvalidLogLineException;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.LoginEvent;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogoutEvent;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.PurchaseEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.CrashEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LoginEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogoutEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.PurchaseEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.report.impl.EventTypesReport;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -19,7 +19,7 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 
 public class EventTypesReportTest {
 
-	EventTypesReport eventReport;
+	EventTypesReport eventTypesReport;
 	List<LogEvent> correctLogEvents;
 	JSONObject expectedReport;
 	private int loginCount = 2;
@@ -29,63 +29,61 @@ public class EventTypesReportTest {
 
 	@Before
 	public void setup() throws JSONException {
-		eventReport = new EventTypesReport();
+		eventTypesReport = new EventTypesReport();
 	}
 
 	private void setupCorrectLogEvents() {
 		correctLogEvents = new ArrayList<LogEvent>();
-		for (int i = 0; i < loginCount; i++) {
-			correctLogEvents.add(new LoginEvent(i + "gmail.com"));
+		for (int userId = 0; userId < loginCount; userId++) {
+			correctLogEvents.add(new LoginEvent(userId + "gmail.com"));
 		}
-		for (int i = 0; i < logoutCount; i++) {
-			correctLogEvents.add(new LogoutEvent(i + "gmail.com"));
+		for (int userId = 0; userId < logoutCount; userId++) {
+			correctLogEvents.add(new LogoutEvent(userId + "gmail.com"));
 		}
-		for (int i = 0; i < purchaseCount; i++) {
-			correctLogEvents.add(new PurchaseEvent(i + "gmail.com", i, Double.valueOf(i * 100)));
+		for (int userId = 0; userId < purchaseCount; userId++) {
+			correctLogEvents.add(new PurchaseEvent(userId + "gmail.com", userId, Double.valueOf(userId * 100)));
 		}
-		for (int i = 0; i < crashCount; i++) {
-			correctLogEvents.add(new CrashEvent(i + "gmail.com"));
+		for (int userId = 0; userId < crashCount; userId++) {
+			correctLogEvents.add(new CrashEvent(userId + "gmail.com"));
 		}
 		Collections.shuffle(correctLogEvents);
 	}
 
 	private void setupExpectedReport() throws JSONException {
 		expectedReport = new JSONObject();
-		if (crashCount > 0) {
-			expectedReport.put("CRASH", crashCount);
-		}
-		if (loginCount > 0) {
-			expectedReport.put("LOGIN", loginCount);
-		}
-		if (logoutCount > 0) {
-			expectedReport.put("LOGOUT", logoutCount);
-		}
-		if (purchaseCount > 0) {
-			expectedReport.put("PURCHASE", purchaseCount);
+		putIfGreaterThanZero(loginCount, "LOGIN");
+		putIfGreaterThanZero(crashCount, "CRASH");
+		putIfGreaterThanZero(logoutCount, "LOGOUT");
+		putIfGreaterThanZero(purchaseCount, "PURCHASE");
+	}
+
+	private void putIfGreaterThanZero(int count, String eventName) throws JSONException {
+		if (count > 0) {
+			expectedReport.put(eventName, count);
 		}
 	}
 
 	@Test
-	public void EventTypesReportIfEmpty() throws JSONException {
-		JSONObject report = eventReport.generateReport(new ArrayList<LogEvent>());
+	public void eventTypesReport_whenReportsEmpty() throws JSONException {
+		JSONObject report = eventTypesReport.generateReport(new ArrayList<LogEvent>());
 		String expectedOutput = "{}";
 		JSONAssert.assertEquals(new JSONObject(expectedOutput), report, JSONCompareMode.STRICT);
 	}
 
 	@Test
-	public void EventTypesReport() throws JSONException{
+	public void eventTypesReport_whenAllEventsPresent() throws JSONException {
 		setupCorrectLogEvents();
 		setupExpectedReport();
-		JSONObject report = eventReport.generateReport(correctLogEvents);
+		JSONObject report = eventTypesReport.generateReport(correctLogEvents);
 		JSONAssert.assertEquals(expectedReport, report, JSONCompareMode.STRICT);
 	}
 
 	@Test
-	public void EventTypesReportAllZero() throws JSONException{
+	public void eventTypesReport_whenAllEventsZero() throws JSONException {
 		loginCount = logoutCount = purchaseCount = crashCount = 0;
 		setupCorrectLogEvents();
 		setupExpectedReport();
-		JSONObject report = eventReport.generateReport(correctLogEvents);
+		JSONObject report = eventTypesReport.generateReport(correctLogEvents);
 		JSONAssert.assertEquals(expectedReport, report, JSONCompareMode.STRICT);
 	}
 }

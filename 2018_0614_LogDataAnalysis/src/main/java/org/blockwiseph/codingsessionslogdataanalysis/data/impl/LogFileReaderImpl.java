@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.blockwiseph.codingsessionslogdataanalysis.data.LogFileReader;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventFactory;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.InvalidLogLineException;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.factory.EventFactory;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.factory.InvalidLogLineException;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
 
 import com.google.inject.Inject;
 
@@ -24,6 +24,7 @@ public class LogFileReaderImpl implements LogFileReader {
 		this.filename = filename;
 	}
 
+	@Override
 	public List<LogEvent> getEventsFromFile() {
 		List<LogEvent> eventsFromFile = new ArrayList<LogEvent>();
 		try {

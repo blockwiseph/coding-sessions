@@ -1,4 +1,11 @@
-package org.blockwiseph.codingsessionslogdataanalysis.logevent;
+package org.blockwiseph.codingsessionslogdataanalysis.logevent.factory;
+
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventType;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.CrashEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LoginEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogoutEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.PurchaseEvent;
 
 public class EventFactory {
 
