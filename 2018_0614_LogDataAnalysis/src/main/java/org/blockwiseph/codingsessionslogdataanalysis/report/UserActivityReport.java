@@ -1,36 +1,43 @@
 package org.blockwiseph.codingsessionslogdataanalysis.report;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventType;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class UserActivityReport implements LogEventsReport{
+public class UserActivityReport implements LogEventsReport {
 
 	private static final String name = "userActivity";
-	
+	private static final String uniqueLoginKey = "uniqueLOGIN";
+	private static final String uniqueLogoutKey = "uniqueLOGOUT";
+
 	@Override
 	public JSONObject generateReport(List<LogEvent> logEvents) {
-		Set<String> uniqueEventEmailSet = new HashSet<String>();
-		HashMap<String, Integer> uniqueEventMap = new HashMap<String, Integer>();
-		uniqueEventMap.put("uniqueLOGIN", 0);
-		uniqueEventMap.put("uniqueLOGOUT", 0);
-		for (LogEvent logEvent : logEvents) {
-			EventType eventType = logEvent.getTag();
-			if(eventType == EventType.LOGIN || eventType == EventType.LOGOUT) {
-				String uniqueEventTypeAndEmail = eventType + " " + logEvent.getEmail();
-				if(uniqueEventEmailSet.add(uniqueEventTypeAndEmail)) {
-					Integer count = uniqueEventMap.get("unique"+eventType);
-					uniqueEventMap.put("unique"+eventType, count+1);
+		JSONObject jsonReport = new JSONObject();
+		try {
+			Set<String> uniqueLoginSet = new HashSet<String>();
+			Set<String> uniqueLogoutSet = new HashSet<String>();
+			for (LogEvent logEvent : logEvents) {
+				EventType eventType = logEvent.getTag();
+				if (eventType == EventType.LOGIN) {
+					uniqueLoginSet.add(logEvent.getEmail());
+				} else if (eventType == EventType.LOGOUT) {
+					uniqueLogoutSet.add(logEvent.getEmail());
 				}
 			}
+			System.out.println(generateJSONString(uniqueLoginSet.size(), uniqueLogoutSet.size()));
+			jsonReport = new JSONObject(generateJSONString(uniqueLoginSet.size(), uniqueLogoutSet.size()));
+		} catch (JSONException e) {
 		}
-		JSONObject jsonReport = new JSONObject(uniqueEventMap);
 		return jsonReport;
+	}
+
+	private String generateJSONString(int uniqueLoginCount, int uniqueLogoutCount) {
+		return "{\"" + uniqueLoginKey + "\":" + uniqueLoginCount + ",\"" + uniqueLogoutKey + "\":" + uniqueLogoutCount + "}";
 	}
 
 	@Override
