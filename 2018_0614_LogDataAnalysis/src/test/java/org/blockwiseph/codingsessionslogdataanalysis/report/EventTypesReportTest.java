@@ -1,10 +1,10 @@
 package org.blockwiseph.codingsessionslogdataanalysis.report;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.CrashEvent;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventFactory;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.InvalidLogLineException;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.LoginEvent;
@@ -19,7 +19,6 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 
 public class EventTypesReportTest {
 
-	EventFactory eventFactory;
 	EventTypesReport eventReport;
 	List<LogEvent> correctLogEvents;
 	JSONObject expectedReport;
@@ -30,7 +29,6 @@ public class EventTypesReportTest {
 
 	@Before
 	public void setup() throws JSONException {
-		eventFactory = new EventFactory();
 		eventReport = new EventTypesReport();
 	}
 
@@ -48,6 +46,7 @@ public class EventTypesReportTest {
 		for (int i = 0; i < crashCount; i++) {
 			correctLogEvents.add(new CrashEvent(i + "gmail.com"));
 		}
+		Collections.shuffle(correctLogEvents);
 	}
 
 	private void setupExpectedReport() throws JSONException {
@@ -67,14 +66,14 @@ public class EventTypesReportTest {
 	}
 
 	@Test
-	public void EventTypesReportIfEmpty() throws JSONException, InvalidLogLineException {
+	public void EventTypesReportIfEmpty() throws JSONException {
 		JSONObject report = eventReport.generateReport(new ArrayList<LogEvent>());
 		String expectedOutput = "{}";
 		JSONAssert.assertEquals(new JSONObject(expectedOutput), report, JSONCompareMode.STRICT);
 	}
 
 	@Test
-	public void EventTypesReport() throws JSONException, InvalidLogLineException {
+	public void EventTypesReport() throws JSONException{
 		setupCorrectLogEvents();
 		setupExpectedReport();
 		JSONObject report = eventReport.generateReport(correctLogEvents);
@@ -82,7 +81,7 @@ public class EventTypesReportTest {
 	}
 
 	@Test
-	public void EventTypesReportAllZero() throws JSONException, InvalidLogLineException {
+	public void EventTypesReportAllZero() throws JSONException{
 		loginCount = logoutCount = purchaseCount = crashCount = 0;
 		setupCorrectLogEvents();
 		setupExpectedReport();
