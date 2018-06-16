@@ -28,7 +28,7 @@ public class UserActivityReport implements LogEventsReport {
 		return generateReport(uniqueLoginSet.size(), uniqueLogoutSet.size());
 	}
 
-	private JSONObject generateReport(int uniqueLoginCount, int uniqueLogoutCount) {
+	private static JSONObject generateReport(int uniqueLoginCount, int uniqueLogoutCount) {
 		Map<String, Integer> report = new HashMap<>();
 		report.put(UNIQUE_LOGIN_KEY, uniqueLoginCount);
 		report.put(UNIQUE_LOGOUT_KEY, uniqueLogoutCount);
