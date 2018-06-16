@@ -29,7 +29,6 @@ public class UserActivityReport implements LogEventsReport {
 					uniqueLogoutSet.add(logEvent.getEmail());
 				}
 			}
-			System.out.println(generateJSONString(uniqueLoginSet.size(), uniqueLogoutSet.size()));
 			jsonReport = new JSONObject(generateJSONString(uniqueLoginSet.size(), uniqueLogoutSet.size()));
 		} catch (JSONException e) {
 		}

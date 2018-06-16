@@ -26,7 +26,6 @@ public class UserActivityReportTest {
 	public void setup() throws JSONException {
 		eventFactory = new EventFactory();
 		userActivityReport = new UserActivityReport();
-//		setupExpectedReport();
 	}
 
 	private List<LogEvent> correctLogEventsWithNoDuplicate() {
@@ -40,9 +39,6 @@ public class UserActivityReportTest {
 		return correctLogEvents;
 	}
 
-//	private void setupExpectedReport() throws JSONException {
-//	}
-
 	@Test
 	public void GetUserActivityReport_WhenLogEventIsEmpty_ShouldReturnJSONWithZeroValues() throws JSONException, InvalidLogLineException {
 		JSONObject expectedReport = new JSONObject();
@@ -55,13 +51,12 @@ public class UserActivityReportTest {
 	@Test
 	public void GetUserActivityReport_WhenLogEventIsCorrectAndNoDuplicate_ShouldReturnCorrectJSON() throws JSONException, InvalidLogLineException {
 		JSONObject expectedReport = new JSONObject("{\"uniqueLOGOUT\":2,\"uniqueLOGIN\":3}");
-		System.out.println(expectedReport);
 		expectedReport.put("uniqueLOGIN", CORRECT_LOGIN_UNIQUE_COUNT);
 		expectedReport.put("uniqueLOGOUT", CORRECT_LOGOUT_UNIQUE_COUNT);
 		JSONObject report = userActivityReport.generateReport(correctLogEventsWithNoDuplicate());
 		JSONAssert.assertEquals(expectedReport, report, JSONCompareMode.STRICT);
 	}
-	
+
 	@Test
 	public void GetUserActivityReport_WhenLogEventIsCorrectAndWithDuplicate_ShouldReturnCorrectJSON() throws JSONException, InvalidLogLineException {
 		JSONObject expectedReport = new JSONObject();
