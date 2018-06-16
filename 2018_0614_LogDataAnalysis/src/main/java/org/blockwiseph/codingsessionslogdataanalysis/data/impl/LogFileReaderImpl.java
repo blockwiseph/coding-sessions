@@ -12,16 +12,17 @@ import org.blockwiseph.codingsessionslogdataanalysis.logevent.factory.InvalidLog
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 public class LogFileReaderImpl implements LogFileReader {
 
-	private String filename;
+	private final String filename;
+	private final EventFactory eventFactory;
 
 	@Inject
-	EventFactory eventFactory;
-
-	public LogFileReaderImpl(String filename) {
+	public LogFileReaderImpl(@Named("inputFile") String filename, EventFactory eventFactory) {
 		this.filename = filename;
+		this.eventFactory = eventFactory;
 	}
 
 	@Override

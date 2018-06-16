@@ -7,12 +7,17 @@ import java.io.IOException;
 import org.blockwiseph.codingsessionslogdataanalysis.data.ReportOutputWriter;
 import org.json.JSONObject;
 
-import lombok.AllArgsConstructor;
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
-@AllArgsConstructor
 public class ReportOutputWriterImpl implements ReportOutputWriter {
 
-	private String filename;
+	private final String filename;
+
+	@Inject
+	public ReportOutputWriterImpl(@Named("outputFile") String filename) {
+		this.filename = filename;
+	}
 
 	@Override
 	public void writeToFile(JSONObject jsonObject) {

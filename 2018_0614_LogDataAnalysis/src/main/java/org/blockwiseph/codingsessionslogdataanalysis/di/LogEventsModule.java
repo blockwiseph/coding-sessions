@@ -14,7 +14,7 @@ import org.blockwiseph.codingsessionslogdataanalysis.report.impl.UserActivityRep
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.google.inject.Singleton;
+import com.google.inject.name.Names;
 
 import lombok.AllArgsConstructor;
 
@@ -23,20 +23,17 @@ public class LogEventsModule extends AbstractModule {
 	String inputFile;
 	String outputFile;
 
-	@Provides
-	@Singleton
-	public LogFileReader getFileReader() {
-		return new LogFileReaderImpl(inputFile);
+	@Override
+	protected void configure() {
+		super.configure();
+		bind(String.class).annotatedWith(Names.named("inputFile")).toInstance(inputFile);
+		bind(String.class).annotatedWith(Names.named("outputFile")).toInstance(outputFile);
+
+		bind(LogFileReader.class).to(LogFileReaderImpl.class);
+		bind(ReportOutputWriter.class).to(ReportOutputWriterImpl.class);
 	}
 
 	@Provides
-	@Singleton
-	public ReportOutputWriter getOutputWriter() {
-		return new ReportOutputWriterImpl(outputFile);
-	}
-
-	@Provides
-	@Singleton
 	public List<LogEventsReport> getReports() {
 		List<LogEventsReport> logEventReports = new ArrayList<>();
 		logEventReports.add(new EventTypesReport());
