@@ -1,13 +1,14 @@
 package org.blockwiseph.codingsessionslogdataanalysis.report.impl;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventType;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.report.LogEventsReport;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class UserActivityReport implements LogEventsReport {
@@ -26,15 +27,12 @@ public class UserActivityReport implements LogEventsReport {
 
 		return generateReport(uniqueLoginSet.size(), uniqueLogoutSet.size());
 	}
-	
+
 	private JSONObject generateReport(int uniqueLoginCount, int uniqueLogoutCount) {
-		JSONObject report = new JSONObject();
-		try {
-			report.put(UNIQUE_LOGIN_KEY, uniqueLoginCount);
-			report.put(UNIQUE_LOGOUT_KEY, uniqueLogoutCount);
-		} catch (JSONException e) {
-		}
-		return report;
+		Map<String, Integer> report = new HashMap<>();
+		report.put(UNIQUE_LOGIN_KEY, uniqueLoginCount);
+		report.put(UNIQUE_LOGOUT_KEY, uniqueLogoutCount);
+		return new JSONObject(report);
 	}
 
 	@Override
