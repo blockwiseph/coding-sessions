@@ -1,0 +1,23 @@
+{
+	"eventTypes": {
+		"LOGIN": 6,
+		"LOGOUT": 4,
+		"PURCHASE": 5,
+		"CRASH": 3
+	},
+	"userActivity": {
+		"uniqueLogin": 3,
+		"uniqueLogout": 3
+	},
+	"averagePerUniqueUser": {
+		"LOGIN": 2,
+		"LOGOUT": 1.33,
+		"PURCHASE": 1.67,
+		"CRASH": 1.5
+	},
+	"purchasingStatistics": {
+		"averagePurhcaseAmount": 411.24,
+		"averagePricePerItem": 82.25,
+		"averageItemsPerPurchase": 5
+	}
+}
