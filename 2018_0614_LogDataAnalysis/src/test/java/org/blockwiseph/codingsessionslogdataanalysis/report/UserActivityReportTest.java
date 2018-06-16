@@ -53,6 +53,14 @@ public class UserActivityReportTest {
 		testAndAssert(inputLoginEvents, 3, 4);
 	}
 
+	@Test
+	public void GetUserActivityReport_WhenNotAllLogEventIsPresent_ShouldReturnCorrectJSON() throws JSONException, InvalidLogLineException {
+		List<LogEvent> inputLoginEvents = new ArrayList<LogEvent>();
+		inputLoginEvents.addAll(loginEvents(1, 2, 2, 3));
+
+		testAndAssert(inputLoginEvents, 3, 0);
+	}
+
 	private void testAndAssert(List<LogEvent> inputLoginEvents, int expectedLogin, int expectedLogout) throws JSONException {
 		JSONObject actualReport = userActivityReport.generateReport(inputLoginEvents);
 		JSONAssert.assertEquals(expectedReport(expectedLogin, expectedLogout), actualReport, JSONCompareMode.STRICT);
