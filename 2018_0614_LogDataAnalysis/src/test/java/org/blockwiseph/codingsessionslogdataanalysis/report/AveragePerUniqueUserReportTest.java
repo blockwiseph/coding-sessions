@@ -57,6 +57,14 @@ public class AveragePerUniqueUserReportTest {
 		inputEvents.addAll(crashEvents(2, 3, 3, 3));
 		testAndAssert(inputEvents, 3, 2.5, 2.5, 2);
 	}
+	
+	@Test
+	public void GetAveragePerUniqueUserReport_WhenNotAllLogEventIsPresent_ShouldReturnCorrectJSON() throws JSONException, InvalidLogLineException {
+		List<LogEvent> inputEvents = new ArrayList<LogEvent>();
+		inputEvents.addAll(loginEvents(2, 3, 3, 3, 2, 2));
+		inputEvents.addAll(purchaseEvents(3, 2, 2, 3, 3));
+		testAndAssert(inputEvents, 3, 0, 2.5, 0);
+	}
 
 	private void testAndAssert(List<LogEvent> inputLoginEvents, double expectedLogin, double expectedLogout, double expectedPurchase, double expectedCrash) throws JSONException {
 		JSONObject actualReport = averagePerUniqueUserReport.generateReport(inputLoginEvents);

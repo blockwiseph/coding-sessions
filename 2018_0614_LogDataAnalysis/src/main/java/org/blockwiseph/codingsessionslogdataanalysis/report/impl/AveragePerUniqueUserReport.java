@@ -45,10 +45,10 @@ public class AveragePerUniqueUserReport implements LogEventsReport {
 
 	private JSONObject generateReport(Map<String, Double> eventCount, int uniqueLoginCount, int uniqueLogoutCount, int uniquePurchaseCount, int uniqueCrashCount) {
 		Map<String, Double> report = new HashMap<>();
-		report.put(LOGIN_KEY, eventCount.isEmpty() ? 0 : formatDouble(eventCount.get(LOGIN_KEY) / uniqueLoginCount));
-		report.put(LOGOUT_KEY, eventCount.isEmpty() ? 0 : formatDouble(eventCount.get(LOGOUT_KEY) / uniqueLogoutCount));
-		report.put(PURCHASE_KEY, eventCount.isEmpty() ? 0 : formatDouble(eventCount.get(PURCHASE_KEY) / uniquePurchaseCount));
-		report.put(CRASH_KEY, eventCount.isEmpty() ? 0 : formatDouble(eventCount.get(CRASH_KEY) / uniqueCrashCount));
+		report.put(LOGIN_KEY, uniqueLoginCount == 0 ? 0 : formatDouble(eventCount.get(LOGIN_KEY) / uniqueLoginCount));
+		report.put(LOGOUT_KEY,  uniqueLogoutCount == 0 ? 0 : formatDouble(eventCount.get(LOGOUT_KEY) / uniqueLogoutCount));
+		report.put(PURCHASE_KEY,  uniquePurchaseCount == 0 ? 0 : formatDouble(eventCount.get(PURCHASE_KEY) / uniquePurchaseCount));
+		report.put(CRASH_KEY,  uniqueCrashCount == 0 ? 0 : formatDouble(eventCount.get(CRASH_KEY) / uniqueCrashCount));
 		return new JSONObject(report);
 	}
 
