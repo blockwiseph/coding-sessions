@@ -8,6 +8,7 @@ import org.blockwiseph.codingsessionslogdataanalysis.data.ReportOutputWriter;
 import org.blockwiseph.codingsessionslogdataanalysis.data.impl.LogFileReaderImpl;
 import org.blockwiseph.codingsessionslogdataanalysis.data.impl.ReportOutputWriterImpl;
 import org.blockwiseph.codingsessionslogdataanalysis.report.LogEventsReport;
+import org.blockwiseph.codingsessionslogdataanalysis.report.impl.AveragePerUniqueUserReport;
 import org.blockwiseph.codingsessionslogdataanalysis.report.impl.EventTypesReport;
 import org.blockwiseph.codingsessionslogdataanalysis.report.impl.PurchasingStatisticsReport;
 import org.blockwiseph.codingsessionslogdataanalysis.report.impl.UserActivityReport;
@@ -38,6 +39,7 @@ public class LogEventsModule extends AbstractModule {
 		List<LogEventsReport> logEventReports = new ArrayList<>();
 		logEventReports.add(new EventTypesReport());
 		logEventReports.add(new UserActivityReport());
+		logEventReports.add(new AveragePerUniqueUserReport());
 		logEventReports.add(new PurchasingStatisticsReport());
 		return logEventReports;
 	}
