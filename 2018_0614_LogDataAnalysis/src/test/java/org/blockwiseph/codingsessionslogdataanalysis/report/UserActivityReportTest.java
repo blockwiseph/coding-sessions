@@ -72,5 +72,4 @@ public class UserActivityReportTest {
 		expectedReport.put(UNIQUE_LOGOUT_KEY, expectedLogout);
 		return expectedReport;
 	}
-
 }

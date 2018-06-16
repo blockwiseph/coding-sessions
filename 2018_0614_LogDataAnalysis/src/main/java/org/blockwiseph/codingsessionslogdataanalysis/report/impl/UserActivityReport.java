@@ -1,10 +1,10 @@
 package org.blockwiseph.codingsessionslogdataanalysis.report.impl;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventType;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
@@ -19,12 +19,12 @@ public class UserActivityReport implements LogEventsReport {
 
 	@Override
 	public JSONObject generateReport(List<LogEvent> logEvents) {
-		Set<String> uniqueLoginSet = new HashSet<String>();
-		Set<String> uniqueLogoutSet = new HashSet<String>();
-
-		logEvents.stream().filter(logEvent -> logEvent.getTag() == EventType.LOGIN).map(LogEvent::getEmail).forEach(uniqueLoginSet::add);
-		logEvents.stream().filter(logEvent -> logEvent.getTag() == EventType.LOGOUT).map(LogEvent::getEmail).forEach(uniqueLogoutSet::add);
-
+		Set<String> uniqueLoginSet = logEvents.stream().filter(logEvent -> logEvent.getTag() == EventType.LOGIN).map(LogEvent::getEmail)
+				.collect(Collectors.toSet());
+		
+		Set<String> uniqueLogoutSet = logEvents.stream().filter(logEvent -> logEvent.getTag() == EventType.LOGOUT).map(LogEvent::getEmail)
+				.collect(Collectors.toSet());
+		
 		return generateReport(uniqueLoginSet.size(), uniqueLogoutSet.size());
 	}
 

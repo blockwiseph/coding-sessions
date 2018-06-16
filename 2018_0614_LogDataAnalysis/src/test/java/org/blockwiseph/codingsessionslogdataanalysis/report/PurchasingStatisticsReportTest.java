@@ -60,7 +60,7 @@ public class PurchasingStatisticsReportTest {
 	}
 
 	private List<LogEvent> noPurchasingEvents() {
-		List<LogEvent> logEvents = new ArrayList();
+		List<LogEvent> logEvents = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
 			logEvents.add(new LoginEvent("dummy"));
 		}
@@ -79,7 +79,7 @@ public class PurchasingStatisticsReportTest {
 	}
 
 	private List<LogEvent> onlyPurchasingEvents(List<Integer> quantityList, List<Double> amountList) {
-		List<LogEvent> logEvents = new ArrayList();
+		List<LogEvent> logEvents = new ArrayList<>();
 		for (int i = 0; i < quantityList.size(); i++) {
 			Integer quantity = quantityList.get(i);
 			Double amount = amountList.get(i);
@@ -87,5 +87,4 @@ public class PurchasingStatisticsReportTest {
 		}
 		return logEvents;
 	}
-
 }
