@@ -15,8 +15,8 @@ import java.util.stream.IntStream;
 
 import org.blockwiseph.codingsessionslogdataanalysis.data.LogFileReader;
 import org.blockwiseph.codingsessionslogdataanalysis.data.ReportOutputWriter;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.CrashEvent;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LoginEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogoutEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.PurchaseEvent;

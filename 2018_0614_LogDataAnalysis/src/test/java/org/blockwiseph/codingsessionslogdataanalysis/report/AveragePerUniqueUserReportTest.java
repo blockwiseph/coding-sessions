@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.factory.InvalidLogLineException;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.CrashEvent;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LoginEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogoutEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.PurchaseEvent;

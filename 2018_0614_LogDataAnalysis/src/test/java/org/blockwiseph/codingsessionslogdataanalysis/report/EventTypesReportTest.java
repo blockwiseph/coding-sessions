@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.CrashEvent;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LoginEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogoutEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.PurchaseEvent;

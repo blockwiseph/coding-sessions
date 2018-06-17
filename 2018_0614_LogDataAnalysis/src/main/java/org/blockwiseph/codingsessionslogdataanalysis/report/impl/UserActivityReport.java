@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventType;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.report.LogEventsReport;
 import org.json.JSONObject;
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.blockwiseph.codingsessionslogdataanalysis.data.LogFileReader;
 import org.blockwiseph.codingsessionslogdataanalysis.data.ReportOutputWriter;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.report.LogEventsReport;
 import org.json.JSONException;
 import org.json.JSONObject;

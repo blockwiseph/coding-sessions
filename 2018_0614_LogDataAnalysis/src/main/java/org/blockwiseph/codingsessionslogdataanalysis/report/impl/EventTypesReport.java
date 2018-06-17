@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.report.LogEventsReport;
 import org.json.JSONObject;
 

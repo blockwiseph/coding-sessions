@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.factory.EventFactory;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.factory.InvalidLogLineException;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.CrashEvent;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LoginEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogoutEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.PurchaseEvent;

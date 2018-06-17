@@ -1,6 +1,7 @@
 package org.blockwiseph.codingsessionslogdataanalysis.logevent.impl;
 
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventType;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 
 import lombok.Value;
 

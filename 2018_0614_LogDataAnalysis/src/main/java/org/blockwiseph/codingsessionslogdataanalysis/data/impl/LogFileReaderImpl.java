@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.blockwiseph.codingsessionslogdataanalysis.data.LogFileReader;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.factory.EventFactory;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.factory.InvalidLogLineException;
-import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogEvent;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
