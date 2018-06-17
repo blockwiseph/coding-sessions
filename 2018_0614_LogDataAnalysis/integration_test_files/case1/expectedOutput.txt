@@ -1,1 +1,9 @@
-{}
+{
+	"eventTypes": {},
+	"userActivity": {
+		"uniqueLogin": 0,
+		"uniqueLogout": 0
+	},
+	"averagePerUniqueUser": {},
+	"purchasingStatistics": {}
+}
