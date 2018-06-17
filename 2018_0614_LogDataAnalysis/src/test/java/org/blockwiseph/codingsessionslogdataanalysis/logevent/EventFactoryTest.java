@@ -8,6 +8,7 @@ import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.CrashEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LoginEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogoutEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.PurchaseEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.ViewAdEvent;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -66,6 +67,18 @@ public class EventFactoryTest {
 	@Test(expected = InvalidLogLineException.class)
 	public void purchaseEventInvalid() throws InvalidLogLineException {
 		eventFactory.fromLogLine("PURCHASE test@gmail.com asd asds");
+	}
+
+	@Test
+	public void viewAdEvent() throws InvalidLogLineException {
+		ViewAdEvent expectedEvent = new ViewAdEvent("test@gmail.com", "15_a");
+		LogEvent actualEvent = eventFactory.fromLogLine("VIEW_AD test@gmail.com 15_a");
+		assertEquals(expectedEvent, actualEvent);
+	}
+
+	@Test(expected = InvalidLogLineException.class)
+	public void viewAdEventInvalid() throws InvalidLogLineException {
+		eventFactory.fromLogLine("VIEW_AD test@gmail.com");
 	}
 
 	@Test(expected = InvalidLogLineException.class)

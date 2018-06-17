@@ -6,6 +6,7 @@ import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.CrashEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LoginEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.LogoutEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.PurchaseEvent;
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.ViewAdEvent;
 
 public class EventFactory {
 
@@ -30,6 +31,8 @@ public class EventFactory {
 				return new CrashEvent(lineParts[1]);
 			case PURCHASE:
 				return new PurchaseEvent(lineParts[1], Integer.parseInt(lineParts[2]), Double.parseDouble(lineParts[3]));
+			case VIEW_AD:
+				return new ViewAdEvent(lineParts[1], lineParts[2]);
 			default:
 				throw new InvalidLogLineException("Invalid event" + logline);
 		}
