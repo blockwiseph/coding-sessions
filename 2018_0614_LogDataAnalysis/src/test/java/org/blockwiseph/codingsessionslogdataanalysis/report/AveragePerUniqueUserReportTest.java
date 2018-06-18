@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventType;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.factory.InvalidLogLineException;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.impl.CrashEvent;
@@ -22,10 +23,6 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 
 public class AveragePerUniqueUserReportTest {
 
-	private static final String LOGOUT_KEY = "LOGOUT";
-	private static final String LOGIN_KEY = "LOGIN";
-	private static final String PURCHASE_KEY = "PURCHASE";
-	private static final String CRASH_KEY = "CRASH";
 	private AveragePerUniqueUserReport averagePerUniqueUserReport;
 
 	@Before
@@ -89,10 +86,18 @@ public class AveragePerUniqueUserReportTest {
 
 	private JSONObject expectedReport(double expectedLogin, double expectedLogout, double expectedPurchase, double expectedCrash) throws JSONException {
 		JSONObject expectedReport = new JSONObject();
-		expectedReport.put(LOGIN_KEY, expectedLogin);
-		expectedReport.put(LOGOUT_KEY, expectedLogout);
-		expectedReport.put(PURCHASE_KEY, expectedPurchase);
-		expectedReport.put(CRASH_KEY, expectedCrash);
+		if (expectedLogin > 0) {
+			expectedReport.put(EventType.LOGIN.name(), expectedLogin);
+		}
+		if (expectedLogout > 0) {
+			expectedReport.put(EventType.LOGOUT.name(), expectedLogout);
+		}
+		if (expectedPurchase > 0) {
+			expectedReport.put(EventType.PURCHASE.name(), expectedPurchase);
+		}
+		if (expectedCrash > 0) {
+			expectedReport.put(EventType.CRASH.name(), expectedCrash);
+		}
 		return expectedReport;
 	}
 
