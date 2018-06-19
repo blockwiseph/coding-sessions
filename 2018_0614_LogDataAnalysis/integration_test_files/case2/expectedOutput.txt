@@ -16,7 +16,7 @@
 		"CRASH": 2
 	},
 	"purchasingStatistics": {
-		"averagePurhcaseAmount": 567.82,
+		"averagePurchaseAmount": 567.82,
 		"averagePricePerItem": 60.41,
 		"averageItemsPerPurchase": 9.4
 	}

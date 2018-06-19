@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 public class PurchasingStatisticsReport implements LogEventsReport {
 
-	private static final String REPORT_NAME = "purchasingTypes";
+	private static final String REPORT_NAME = "purchasingStatistics";
 
 	private final DecimalFormat twoDecimalPlaces = new DecimalFormat("#.##");
 
@@ -37,7 +37,7 @@ public class PurchasingStatisticsReport implements LogEventsReport {
 		HashMap<String, Double> purchaseReport = new HashMap<>();
 		purchaseReport.put("averagePurchaseAmount", formatDouble(totalAmount / purchaseEventSize));
 		purchaseReport.put("averagePricePerItem", formatDouble(totalAmount / totalItems));
-		purchaseReport.put("averageItemsPerPurchase", formatDouble(totalItems / purchaseEventSize));
+		purchaseReport.put("averageItemsPerPurchase", formatDouble((double) totalItems / purchaseEventSize));
 		return new JSONObject(purchaseReport);
 	}
 

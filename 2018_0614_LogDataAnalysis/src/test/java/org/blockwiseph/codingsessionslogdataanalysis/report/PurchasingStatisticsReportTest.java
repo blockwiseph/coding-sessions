@@ -46,7 +46,7 @@ public class PurchasingStatisticsReportTest {
 	}
 
 	@Test
-	public void purchasingStatisticsReport_wheBothPurchasingAndOtherEvents() throws JSONException {
+	public void purchasingStatisticsReport_whenBothPurchasingAndOtherEvents() throws JSONException {
 		List<Integer> quantities = Arrays.asList(2, 4, 3);
 		List<Double> amounts = Arrays.asList(20.5, 20.2, 40.5);
 		List<LogEvent> allTypesOfEvents = onlyPurchasingEvents(quantities, amounts);
@@ -56,6 +56,19 @@ public class PurchasingStatisticsReportTest {
 		JSONObject report = eventReport.generateReport(allTypesOfEvents);
 
 		JSONObject expectedReport = getExpectedReport(27.07, 9.02, 3.0);
+		JSONAssert.assertEquals(expectedReport, report, JSONCompareMode.STRICT);
+	}
+
+	@Test
+	public void purchasingStatisticsReport_whenItemsPerPurchaseNonInteger() throws JSONException {
+		List<Integer> quantities = Arrays.asList(1, 2);
+		List<Double> amounts = Arrays.asList(20.0, 20.0);
+		List<LogEvent> purchasingEvents = onlyPurchasingEvents(quantities, amounts);
+		Collections.shuffle(purchasingEvents);
+
+		JSONObject report = eventReport.generateReport(purchasingEvents);
+
+		JSONObject expectedReport = getExpectedReport(20.0, 13.33, 1.5);
 		JSONAssert.assertEquals(expectedReport, report, JSONCompareMode.STRICT);
 	}
 

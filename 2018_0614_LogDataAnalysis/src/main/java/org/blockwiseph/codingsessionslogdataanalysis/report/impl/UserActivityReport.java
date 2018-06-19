@@ -14,8 +14,8 @@ import org.json.JSONObject;
 public class UserActivityReport implements LogEventsReport {
 
 	private static final String REPORT_NAME = "userActivity";
-	private static final String UNIQUE_LOGIN_KEY = "uniqueLOGIN";
-	private static final String UNIQUE_LOGOUT_KEY = "uniqueLOGOUT";
+	private static final String UNIQUE_LOGIN_KEY = "uniqueLogin";
+	private static final String UNIQUE_LOGOUT_KEY = "uniqueLogout";
 
 	@Override
 	public JSONObject generateReport(List<LogEvent> logEvents) {

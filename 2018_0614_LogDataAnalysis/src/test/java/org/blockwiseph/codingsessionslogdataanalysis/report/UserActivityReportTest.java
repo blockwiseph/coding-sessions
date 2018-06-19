@@ -20,8 +20,8 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 
 public class UserActivityReportTest {
 
-	private static final String UNIQUE_LOGOUT_KEY = "uniqueLOGOUT";
-	private static final String UNIQUE_LOGIN_KEY = "uniqueLOGIN";
+	private static final String UNIQUE_LOGOUT_KEY = "uniqueLogout";
+	private static final String UNIQUE_LOGIN_KEY = "uniqueLogin";
 	private UserActivityReport userActivityReport;
 
 	@Before
