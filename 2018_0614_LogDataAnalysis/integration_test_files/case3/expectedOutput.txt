@@ -3,7 +3,8 @@
 		"LOGIN": 6,
 		"LOGOUT": 4,
 		"PURCHASE": 5,
-		"CRASH": 3
+		"CRASH": 3,
+		"VIEW_AD": 5
 	},
 	"userActivity": {
 		"uniqueLogin": 3,
@@ -13,11 +14,28 @@
 		"LOGIN": 2,
 		"LOGOUT": 1.33,
 		"PURCHASE": 1.67,
-		"CRASH": 1.5
+		"CRASH": 1.5,
+		"VIEW_AD": 1.67
 	},
 	"purchasingStatistics": {
 		"averagePurchaseAmount": 411.24,
 		"averagePricePerItem": 82.25,
 		"averageItemsPerPurchase": 5
+	},
+	"adStatistics": {
+		"averageViewsPerAd": 1.25,
+		"averageUniqueViewsPerAd": 1.25,
+		"adIdToViews": {
+			"14": 1,
+			"23": 1,
+			"48": 2,
+			"8": 1
+		},
+		"adIdToUniqueViews": {
+			"14": 1,
+			"23": 1,
+			"48": 2,
+			"8": 1
+		}
 	}
 }
