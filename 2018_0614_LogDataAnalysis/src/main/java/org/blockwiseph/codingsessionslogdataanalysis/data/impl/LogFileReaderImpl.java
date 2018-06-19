@@ -2,6 +2,7 @@ package org.blockwiseph.codingsessionslogdataanalysis.data.impl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,7 +30,7 @@ public class LogFileReaderImpl implements LogFileReader {
 	public List<LogEvent> getEventsFromFile() {
 		List<LogEvent> eventsFromFile = new ArrayList<LogEvent>();
 		try {
-			Scanner sc = new Scanner(new File(filename));
+			Scanner sc = new Scanner(new File(filename), StandardCharsets.UTF_8.name());
 			readEventsFromScanner(sc, eventsFromFile);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

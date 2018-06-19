@@ -1,8 +1,9 @@
 package org.blockwiseph.codingsessionslogdataanalysis.data.impl;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 
 import org.blockwiseph.codingsessionslogdataanalysis.data.ReportOutputWriter;
 import org.json.JSONObject;
@@ -22,9 +23,9 @@ public class ReportOutputWriterImpl implements ReportOutputWriter {
 	@Override
 	public void writeToFile(JSONObject jsonObject) {
 		try {
-			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
-			bufferedWriter.write(jsonObject.toString());
-			bufferedWriter.close();
+			OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(filename), StandardCharsets.UTF_8);
+			writer.write(jsonObject.toString());
+			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
