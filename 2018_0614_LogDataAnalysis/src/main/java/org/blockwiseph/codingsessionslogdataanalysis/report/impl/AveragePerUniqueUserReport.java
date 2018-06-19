@@ -6,11 +6,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.EventType;
 import org.blockwiseph.codingsessionslogdataanalysis.logevent.LogEvent;
 import org.blockwiseph.codingsessionslogdataanalysis.report.LogEventsReport;
 import org.json.JSONObject;
+
+import lombok.val;
 
 public class AveragePerUniqueUserReport implements LogEventsReport {
 
@@ -20,20 +23,28 @@ public class AveragePerUniqueUserReport implements LogEventsReport {
 
 	@Override
 	public JSONObject generateReport(List<LogEvent> logEvents) {
-		Map<EventType, List<String>> eventTypeToTotalCount = new HashMap<>();
+		Map<EventType, List<String>> eventTypeToEmails = new HashMap<>();
 		for (LogEvent logEvent : logEvents) {
-			List<String> emailList = eventTypeToTotalCount.containsKey(logEvent.getTag()) ? eventTypeToTotalCount.get(logEvent.getTag()) : new ArrayList<String>();
+			List<String> existingEmailsForThisEvent = eventTypeToEmails.get(logEvent.getTag());
+			List<String> emailList = Optional.ofNullable(existingEmailsForThisEvent).orElseGet(ArrayList::new);
 			emailList.add(logEvent.getEmail());
-			eventTypeToTotalCount.put(logEvent.getTag(), emailList);
+
+			eventTypeToEmails.put(logEvent.getTag(), emailList);
 		}
-		return generateReport(eventTypeToTotalCount);
+		return generateReport(eventTypeToEmails);
 	}
 
-	private JSONObject generateReport(Map<EventType, List<String>> eventTypeToTotalCount) {
+	private JSONObject generateReport(Map<EventType, List<String>> eventTypeToEmails) {
 		Map<String, Double> report = new HashMap<>();
-		for (Map.Entry<EventType, List<String>> mapEntry : eventTypeToTotalCount.entrySet()) {
-			Double average = mapEntry.getValue().size() == 0 ? 0 : (double) mapEntry.getValue().size() / new HashSet<>(mapEntry.getValue()).size();
-			report.put(mapEntry.getKey().name(), formatDouble(average));
+		for (val mapEntry : eventTypeToEmails.entrySet()) {
+			String eventName = mapEntry.getKey().name();
+			List<String> emails = mapEntry.getValue();
+
+			int totalEmails = emails.size();
+			int uniqueEmails = new HashSet<>(emails).size();
+			Double average = (double) totalEmails / uniqueEmails;
+
+			report.put(eventName, formatDouble(average));
 		}
 		return new JSONObject(report);
 	}

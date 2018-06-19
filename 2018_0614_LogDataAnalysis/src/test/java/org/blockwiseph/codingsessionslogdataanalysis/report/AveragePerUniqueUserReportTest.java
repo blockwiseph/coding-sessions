@@ -84,21 +84,18 @@ public class AveragePerUniqueUserReportTest {
 		return IntStream.of(ids).mapToObj(id -> new CrashEvent(id + "@gmail.com")).collect(Collectors.toList());
 	}
 
-	private JSONObject expectedReport(double expectedLogin, double expectedLogout, double expectedPurchase, double expectedCrash) throws JSONException {
+	private JSONObject expectedReport(double expectedLoginAverage, double expectedLogoutAverage, double expectedPurchaseAverage, double expectedCrashAverage) throws JSONException {
 		JSONObject expectedReport = new JSONObject();
-		if (expectedLogin > 0) {
-			expectedReport.put(EventType.LOGIN.name(), expectedLogin);
-		}
-		if (expectedLogout > 0) {
-			expectedReport.put(EventType.LOGOUT.name(), expectedLogout);
-		}
-		if (expectedPurchase > 0) {
-			expectedReport.put(EventType.PURCHASE.name(), expectedPurchase);
-		}
-		if (expectedCrash > 0) {
-			expectedReport.put(EventType.CRASH.name(), expectedCrash);
-		}
+		putIfGreaterThanZero(expectedReport, EventType.LOGIN, expectedLoginAverage);
+		putIfGreaterThanZero(expectedReport, EventType.LOGOUT, expectedLogoutAverage);
+		putIfGreaterThanZero(expectedReport, EventType.CRASH, expectedCrashAverage);
+		putIfGreaterThanZero(expectedReport, EventType.PURCHASE, expectedPurchaseAverage);
 		return expectedReport;
 	}
 
+	private void putIfGreaterThanZero(JSONObject expectedReport, EventType eventType, double count) throws JSONException {
+		if (count > 0) {
+			expectedReport.put(eventType.name(), count);
+		}
+	}
 }
