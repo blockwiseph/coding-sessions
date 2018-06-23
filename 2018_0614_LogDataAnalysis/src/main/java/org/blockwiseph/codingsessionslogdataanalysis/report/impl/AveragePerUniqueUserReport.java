@@ -3,7 +3,6 @@ package org.blockwiseph.codingsessionslogdataanalysis.report.impl;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -38,13 +37,13 @@ public class AveragePerUniqueUserReport implements LogEventsReport {
 		Map<String, Double> report = new HashMap<>();
 		for (val mapEntry : eventTypeToEmails.entrySet()) {
 			String eventName = mapEntry.getKey().name();
-			List<String> emails = mapEntry.getValue();
+			List<String> emailsForThisEvent = mapEntry.getValue();
 
-			int totalEmails = emails.size();
-			int uniqueEmails = new HashSet<>(emails).size();
-			Double average = (double) totalEmails / uniqueEmails;
+			int totalEmailsForThisEvent = emailsForThisEvent.size();
+			int uniqueEmailsForThisEvent = (int) emailsForThisEvent.stream().distinct().count();
+			Double averageOfThisEventPerUniqueUser = (double) totalEmailsForThisEvent / uniqueEmailsForThisEvent;
 
-			report.put(eventName, formatDouble(average));
+			report.put(eventName, formatDouble(averageOfThisEventPerUniqueUser));
 		}
 		return new JSONObject(report);
 	}

@@ -3,7 +3,6 @@ package org.blockwiseph.codingsessionslogdataanalysis.report.impl;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -65,7 +64,7 @@ public class AdStatisticsReport implements LogEventsReport {
 			List<String> emails = adIdToEmail.getValue();
 
 			int viewsForThisAd = emails.size();
-			int uniqueViewsForThisAd = new HashSet<>(emails).size();
+			int uniqueViewsForThisAd =(int) emails.stream().distinct().count();
 
 			adIdsToViews.put(adId, viewsForThisAd);
 			adIdsToUniqueViews.put(adId, uniqueViewsForThisAd);
