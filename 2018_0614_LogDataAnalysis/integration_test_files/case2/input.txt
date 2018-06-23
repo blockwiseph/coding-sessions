@@ -1,0 +1,22 @@
+LOGOUT 3@gmail.com
+VIEW_AD 2@gmail.com 26
+LOGOUT 2@gmail.com
+CRASH 2@gmail.com
+LOGIN 2@gmail.com
+PURCHASE 3@gmail.com 5 475.74
+PURCHASE 2@gmail.com 14 216.10
+LOGIN 3@gmail.com
+LOGIN 3@gmail.com
+VIEW_AD 2@gmail.com 26
+PURCHASE 2@gmail.com 10 450.63
+LOGIN 3@gmail.com
+LOGOUT 3@gmail.com
+PURCHASE 3@gmail.com 10 839.45
+LOGIN 2@gmail.com
+CRASH 3@gmail.com
+LOGIN 2@gmail.com
+LOGOUT 2@gmail.com
+LOGOUT 3@gmail.com
+PURCHASE 3@gmail.com 8 857.18
+CRASH 3@gmail.com
+CRASH 3@gmail.com

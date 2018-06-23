@@ -1,0 +1,35 @@
+{
+	"eventTypes": {
+		"LOGIN": 6,
+		"LOGOUT": 5,
+		"PURCHASE": 5,
+		"CRASH": 4,
+		"VIEW_AD": 2
+	},
+	"userActivity": {
+		"uniqueLogin": 2,
+		"uniqueLogout": 2
+	},
+	"averagePerUniqueUser": {
+		"LOGIN": 3,
+		"LOGOUT": 2.5,
+		"PURCHASE": 2.5,
+		"CRASH": 2,
+		"VIEW_AD": 2.00
+	},
+	"purchasingStatistics": {
+		"averagePurchaseAmount": 567.82,
+		"averagePricePerItem": 60.41,
+		"averageItemsPerPurchase": 9.4
+	},
+	"adStatistics": {
+		"averageViewsPerAd": 2.00,
+		"averageUniqueViewsPerAd": 1.00,
+		"adIdToViews":{
+			"26": 2
+		},
+		"adIdToUniqueViews":{
+			"26": 1
+		}
+	}
+}
